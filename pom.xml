@@ -84,6 +84,8 @@
         <servo-core.version>0.12.21</servo-core.version>
         <spring-cloud-dependencies.version>2021.0.8</spring-cloud-dependencies.version>
         <woodstox-core.version>6.3.1</woodstox-core.version>
+        <stax2-api.version>4.2.2</stax2-api.version>
+        <httpclient.version>4.5.3</httpclient.version>
     </properties>
 
     <reporting>
@@ -137,35 +139,49 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <!-- com.netflix.eureka:eureka-client has an internal clash -->
+                <!-- Dependency convergence error in com.netflix.eureka:eureka-server -->
                 <groupId>com.fasterxml.woodstox</groupId>
                 <artifactId>woodstox-core</artifactId>
                 <version>${woodstox-core.version}</version>
             </dependency>
+
             <dependency>
-                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-client -->
+                <!-- Dependency convergence error in com.netflix.eureka:eureka-server -->
+                <groupId>org.codehaus.woodstox</groupId>
+                <artifactId>stax2-api</artifactId>
+                <version>${stax2-api.version}</version>
+            </dependency>
+            <dependency>
+                <!-- Dependency convergence error in com.netflix.eureka:eureka-server -->
                 <groupId>com.google.guava</groupId>
                 <artifactId>guava</artifactId>
                 <version>${guava.version}</version>
             </dependency>
             <dependency>
-                <!-- Clash in org.springframework.cloud:spring-cloud-starter-netflix-eureka-client -->
+                <!-- Dependency convergence error in com.netflix.eureka:eureka-server -->
                 <groupId>com.netflix.servo</groupId>
                 <artifactId>servo-core</artifactId>
                 <version>${servo-core.version}</version>
             </dependency>
             <dependency>
-                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
+                <!-- Dependency convergence error in com.netflix.eureka:eureka-server -->
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-client</artifactId>
                 <version>${jersey.version}</version>
             </dependency>
             <dependency>
-                <!-- org.springframework.cloud:spring-cloud-netflix-eureka-server has an internal clash -->
+                <!-- Dependency convergence error in com.netflix.eureka:eureka-server -->
                 <groupId>com.sun.jersey</groupId>
                 <artifactId>jersey-core</artifactId>
                 <version>${jersey.version}</version>
             </dependency>
+            <dependency>
+                <!-- Dependency convergence error in com.netflix.eureka:eureka-server -->
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${httpclient.version}</version>
+            </dependency>
+            <!-- End of dependency convergence -->
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
@@ -173,6 +189,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 
