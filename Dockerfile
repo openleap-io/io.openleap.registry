@@ -1,6 +1,6 @@
 FROM amazoncorretto:21-alpine as builder
 WORKDIR application
-ARG JAR_FILE=target/openwms-services-exec.jar
+ARG JAR_FILE=target/openleap-registry-exec.jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 

@@ -1,15 +1,15 @@
 spring:
   application:
-    name: openwms-services
+    name: openleap-registry
   security:
     user:
       name: user
       password: sa
 
-owms:
+oleap:
   eureka:
-    url: ${owms.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${owms.srv.hostname}:${server.port}
-    zone: ${owms.eureka.url}/eureka/
+    url: ${oleap.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${oleap.srv.hostname}:${server.port}
+    zone: ${oleap.eureka.url}/eureka/
   srv:
     protocol: http
     hostname: localhost
@@ -26,7 +26,7 @@ eureka:
       enabled: false
     instance-info-replication-interval-seconds: 30 # default is 30
     service-url:
-      defaultZone: ${owms.eureka.zone} # Must be camelCase
+      defaultZone: ${oleap.eureka.zone} # Must be camelCase
   server:
     wait-time-in-ms-when-sync-empty: 0 # default is 60000
 
@@ -54,11 +54,11 @@ eureka:
     secure-port-enabled: false
     non-secure-port-enabled: true
     metadata-map:
-    # hostname: ${owms.srv.hostname} # to avoid 401 batch update errors
+    # hostname: ${oleap.srv.hostname} # to avoid 401 batch update errors
       password: ${spring.security.user.password}
-      protocol: ${owms.srv.protocol}
+      protocol: ${oleap.srv.protocol}
       username: ${spring.security.user.name}
-      zone: ${owms.eureka.zone}
+      zone: ${oleap.eureka.zone}
 
 management:
   endpoints:
@@ -76,10 +76,10 @@ spring:
   main:
     banner-mode: "OFF"
 
-owms:
+oleap:
   srv:
     protocol: https
-    hostname: openwms-services.herokuapp.com
+    hostname: openleap-registry.herokuapp.com
 
 eureka:
   server:
@@ -89,11 +89,11 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: ${owms.eureka.url}/eureka/ # Must be camelCase
+      defaultZone: ${oleap.eureka.url}/eureka/ # Must be camelCase
   instance:
     secure-port-enabled: true
     non-secure-port-enabled: false
-    status-page-url: ${owms.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/info
-    health-check-url: ${owms.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/health
-    home-page-url: ${owms.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/
+    status-page-url: ${oleap.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/info
+    health-check-url: ${oleap.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/health
+    home-page-url: ${oleap.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/
 

@@ -33,12 +33,12 @@ phases:
       - echo Build completed on `date`
 artifacts:
   files:
-    - target/openwms-services.jar
+    - target/openleap-registry.jar
   discard-paths: yes
   secondary-artifacts:
     artifact1:
       files:
-        - target/openwms-services.jar
+        - target/openleap-registry.jar
       discard-paths: yes
 cache:
   paths:

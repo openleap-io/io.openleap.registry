@@ -19,11 +19,11 @@ Parameters:
   ApplicationName:
     Description: CodeDeploy application name
     Type: String
-    Default: openwms-services
+    Default: openleap-registry
   DEV:
     Description: Development Environment
     Type: String
-    Default: openwms-services-STAGING
+    Default: openleap-registry-STAGING
 Resources:
   CodePipelineArtifactStoreBucket:
     Type: 'AWS::S3::Bucket'
@@ -79,7 +79,7 @@ Resources:
   AppPipeline:
     Type: 'AWS::CodePipeline::Pipeline'
     Properties:
-      Name: openwms-services
+      Name: openleap-registry
       RoleArn: !GetAtt 
         - CodePipelineServiceRole
         - Arn
@@ -114,7 +114,7 @@ Resources:
               OutputArtifacts:
                 - Name: BuildOutput
               Configuration:
-                ProjectName: openwms-services
+                ProjectName: openleap-registry
                 PrimarySource: SourceOutput
               RunOrder: 1
         - Name: DEV

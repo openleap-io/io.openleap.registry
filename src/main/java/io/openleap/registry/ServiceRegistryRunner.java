@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.openwms.services;
+package io.openleap.registry;
 
 import io.micrometer.core.instrument.MeterRegistry;
 import org.ameba.app.SolutionApp;
@@ -28,9 +28,9 @@ import org.springframework.context.annotation.Bean;
 /**
  * A ServiceRegistryRunner.
  *
- * @author <a href="mailto:scherrer@openwms.org">Heiko Scherrer</a>
+ * @author <a href="mailto:kemmann@openleap.io">Sören Kemmann</a>
  */
-@SpringBootApplication(scanBasePackageClasses = SolutionApp.class, scanBasePackages = "org.openwms")
+@SpringBootApplication(scanBasePackageClasses = SolutionApp.class, scanBasePackages = "io.openleap")
 @EnableEurekaServer
 @EnableDiscoveryClient
 public class ServiceRegistryRunner {

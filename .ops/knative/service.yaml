@@ -1,7 +1,7 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Service
 metadata:
-  name: openwms-services
+  name: openleap-registry
   namespace: default
 spec:
   runLatest:
@@ -13,6 +13,6 @@ spec:
             autoscaling.knative.dev/maxScale: "5"
         spec:
           container:
-            image: docker.io/interface21/openwms-services:latest
+            image: docker.io/openleap/openleap-registry:latest
             ports:
               - containerPort: 8761

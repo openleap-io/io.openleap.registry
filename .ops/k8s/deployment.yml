@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: owms-services
+  name: oleap-registry
   labels:
-    app: owms-services
+    app: oleap-registry
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: owms-services
+      app: oleap-registry
   template:
     metadata:
       labels:
-        app: owms-services
+        app: oleap-registry
     spec:
       containers:
         - name: service-registry
-          image: interface21/openwms-services:latest
+          image: openleap/openleap-registry:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8761
@@ -24,9 +24,9 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: owms-services
+  name: oleap-registry
 spec:
   ports:
   - port: 8761
   selector:
-    app: owms-services
+    app: oleap-registry

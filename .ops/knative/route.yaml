@@ -1,10 +1,10 @@
 apiVersion: serving.knative.dev/v1alpha1
 kind: Route
 metadata:
-  name: openwms-services
+  name: openleap-registry
   namespace: default
 spec:
-  # domain: openwms-services.default.dev.gswkbook.com
+  # domain: openleap-registry.default.dev.gswkbook.com
   traffic:
-  - configurationName: openwms-services
+  - configurationName: openleap-registry
     percent: 100
