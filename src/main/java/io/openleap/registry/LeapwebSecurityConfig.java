@@ -21,19 +21,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
  * A SecurityConfig based on Spring Security framework
  *
  * @author <a href="mailto:kemmann@openleap.io">Sören Kemmann</a>
- */
+**/
 @Configuration
 @EnableWebSecurity
 public class LeapwebSecurityConfig {
@@ -45,12 +41,14 @@ public class LeapwebSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.ignoringRequestMatchers("/eureka/**"))
-                .authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
-                .httpBasic(Customizer.withDefaults())
-                .formLogin(Customizer.withDefaults());
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((request) -> request
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(Customizer.withDefaults()).sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//                .formLogin(Customizer.withDefaults());
         return http.build();
-    }
+    }/*
 
     @Bean
     public UserDetailsService userDetailsService() {
@@ -61,5 +59,5 @@ public class LeapwebSecurityConfig {
                 .roles("USER")
                 .build();
         return new InMemoryUserDetailsManager(user);
-    }
+    }*/
 }

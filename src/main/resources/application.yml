@@ -5,7 +5,6 @@ spring:
     user:
       name: user
       password: sa
-
 oleap:
   eureka:
     url: ${oleap.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${oleap.srv.hostname}:${server.port}
