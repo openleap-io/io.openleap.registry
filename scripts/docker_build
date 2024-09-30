@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t openleap/openleap-registry:latest .
+docker build -t openleap/io.openleap.registry:latest .

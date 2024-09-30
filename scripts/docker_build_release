@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t openleap/openleap-registry:$VERSION-$GITHUB_RUN_NUMBER .
+docker build -t openleap/io.openleap.registry:$VERSION-$GITHUB_RUN_NUMBER .
