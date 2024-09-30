@@ -45,9 +45,6 @@
         </developer>
     </developers>
 
-    <properties>
-    </properties>
-
     <reporting>
         <plugins>
             <plugin>
