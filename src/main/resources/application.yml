@@ -6,23 +6,23 @@ spring:
     name: openleap-registry
   security:
     user:
-      name: user
-      password: sa
+      name: ${REGISTRY_USER:user}
+      password: ${REGISTRY_PASSWORD:sa}
 oleap:
   eureka:
     url: ${oleap.srv.protocol}://${spring.security.user.name}:${spring.security.user.password}@${oleap.srv.hostname}:${server.port}
     zone: ${oleap.eureka.url}/eureka/
   srv:
-    protocol: http
-    hostname: localhost
+    protocol: ${REGISTRY_PROTOCOL:http}
+    hostname: ${REGISTRY_HOSTNAME:localhost}
   client:
     registration:
-      unregistration-endpoint: http://auth-server:8899/internal/client/unregister
-      registration-username: register-client
-      registration-password: secret
-      registration-scopes: client.create
-      grant-types: client_credentials
-      token-endpoint: http://auth-server:8899/oauth2/token
+      unregistration-endpoint: ${REGISTRY_UNREGISTRATION_URL:http://auth-server:8899/internal/client/unregister}
+      registration-username: ${REGISTRY_UNREGISTRATION_USERNAME:register-client}
+      registration-password: ${REGISTRY_UNREGISTRATION_PASSWORD:secret}
+      registration-scopes: ${REGISTRY_UNREGISTRATION_SCOPES:client.create}
+      grant-types: ${REGISTRY_UNREGISTRATION_GRANTTYPE:client_credentials}
+      token-endpoint: ${REGISTRY_UNREGISTRATION_TOKEN_URL:http://auth-server:8899/oauth2/token}
 eureka:
   client:
     register-with-eureka: false # default is true
