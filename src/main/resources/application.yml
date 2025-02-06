@@ -17,12 +17,12 @@ oleap:
     hostname: ${REGISTRY_HOSTNAME:localhost}
   client:
     registration:
-      unregistration-endpoint: ${REGISTRY_UNREGISTRATION_URL:http://auth-server:8899/internal/client/unregister}
-      registration-username: ${REGISTRY_UNREGISTRATION_USERNAME:register-client}
-      registration-password: ${REGISTRY_UNREGISTRATION_PASSWORD:secret}
-      registration-scopes: ${REGISTRY_UNREGISTRATION_SCOPES:client.create}
-      grant-types: ${REGISTRY_UNREGISTRATION_GRANTTYPE:client_credentials}
-      token-endpoint: ${REGISTRY_UNREGISTRATION_TOKEN_URL:http://auth-server:8899/oauth2/token}
+      unregistration-endpoint: ${AUTH_UNREGISTRATION_URL:http://auth-server:8899/internal/client/unregister}
+      registration-username: ${AUTH_UNREGISTRATION_USERNAME:register-client}
+      registration-password: ${AUTH_UNREGISTRATION_PASSWORD:secret}
+      registration-scopes: ${AUTH_UNREGISTRATION_SCOPES:client.create}
+      grant-types: ${AUTH_UNREGISTRATION_GRANTTYPE:client_credentials}
+      token-endpoint: ${AUTH_UNREGISTRATION_TOKEN_URL:http://auth-server:8899/oauth2/token}
 eureka:
   client:
     register-with-eureka: false # default is true
