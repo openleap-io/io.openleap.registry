@@ -1,3 +1,6 @@
+server:
+  port: ${PORT:8761}
+
 spring:
   application:
     name: openleap-registry
@@ -12,17 +15,20 @@ oleap:
   srv:
     protocol: http
     hostname: localhost
-
-server:
-  port: ${PORT:8761}
-
-# https://medium.com/@fahimfarookme/the-mystery-of-eureka-self-preservation-c7aa0ed1b799
+  client:
+    registration:
+      unregistration-endpoint: http://auth-server:8899/internal/client/unregister
+      registration-username: register-client
+      registration-password: secret
+      registration-scopes: client.create
+      grant-types: client_credentials
+      token-endpoint: http://auth-server:8899/oauth2/token
 eureka:
   client:
     register-with-eureka: false # default is true
     fetch-registry: false # default is true
     healthcheck:
-      enabled: false
+      enabled: true
     instance-info-replication-interval-seconds: 30 # default is 30
     service-url:
       defaultZone: ${oleap.eureka.zone} # Must be camelCase
@@ -63,36 +69,10 @@ management:
   endpoints:
     web:
       exposure:
-        include: "prometheus"
-  server:
-    port: ${MGMTPORT:8990}
-
----
-spring:
-  config:
-    activate:
-      on-profile: HEROKU
-  main:
-    banner-mode: "OFF"
-
-oleap:
-  srv:
-    protocol: https
-    hostname: openleap-registry.herokuapp.com
-
-eureka:
-  server:
-    eviction-interval-timer-in-ms: 0
-    wait-time-in-ms-when-sync-empty: 0
-  client:
-    register-with-eureka: false
-    fetch-registry: false
-    service-url:
-      defaultZone: ${oleap.eureka.url}/eureka/ # Must be camelCase
-  instance:
-    secure-port-enabled: true
-    non-secure-port-enabled: false
-    status-page-url: ${oleap.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/info
-    health-check-url: ${oleap.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/health
-    home-page-url: ${oleap.srv.protocol}://${eureka.instance.hostname}:${server.port}/actuator/
-
+        include: "*"
+logging:
+  level:
+    root: INFO
+#    org.springframework.web: INFO
+#    org.springframework.security: TRACE
+#    org.springframework.security.oauth2: TRACE

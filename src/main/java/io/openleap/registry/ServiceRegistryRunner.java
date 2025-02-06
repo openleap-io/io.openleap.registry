@@ -15,36 +15,18 @@
  */
 package io.openleap.registry;
 
-import io.micrometer.core.instrument.MeterRegistry;
-import org.ameba.app.SolutionApp;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-import org.springframework.context.annotation.Bean;
 
 /**
  * A ServiceRegistryRunner.
  *
  * @author <a href="mailto:kemmann@openleap.io">Sören Kemmann</a>
  */
-@SpringBootApplication(scanBasePackageClasses = SolutionApp.class, scanBasePackages = "io.openleap")
+@SpringBootApplication
 @EnableEurekaServer
-@EnableDiscoveryClient
 public class ServiceRegistryRunner {
-
-    @Bean
-    MeterRegistryCustomizer<MeterRegistry> metricsCommonTags(@Value("${spring.application.name}") String applicationName) {
-        return registry -> registry.config().commonTags("application", applicationName);
-    }
-
-    /**
-     * Boot up!
-     *
-     * @param args Some args
-     */
     public static void main(String[] args) {
         SpringApplication.run(ServiceRegistryRunner.class, args);
     }
