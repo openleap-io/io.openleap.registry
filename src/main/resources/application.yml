@@ -2,6 +2,8 @@ server:
   port: ${PORT:8761}
 
 spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:default}
   application:
     name: openleap-registry
   security:
@@ -64,6 +66,12 @@ eureka:
       protocol: ${oleap.srv.protocol}
       username: ${spring.security.user.name}
       zone: ${oleap.eureka.zone}
+
+keycloak:
+  server-url: http://keycloak-web:8090
+  realm: openleap-realm
+  client-id: eureka-client
+  client-secret: fympr28eG8FGpSah3K7SzIGHKBz96tjV
 
 management:
   endpoints:

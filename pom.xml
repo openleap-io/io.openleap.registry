@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.openleap</groupId>
         <artifactId>io.openleap.parent</artifactId>
-        <version>50</version>
+        <version>51</version>
         <relativePath />
     </parent>
     <artifactId>io.openleap.registry</artifactId>
@@ -140,6 +140,12 @@
             <artifactId>jolokia-core</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <dependency>
+            <groupId>org.keycloak</groupId>
+            <artifactId>keycloak-admin-client</artifactId>
+            <version>26.0.4</version>
+        </dependency>
+
     </dependencies>
 
     <repositories>
