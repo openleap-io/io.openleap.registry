@@ -3,7 +3,7 @@ server:
 
 spring:
   profiles:
-    active: default
+    active: spring
   application:
     name: openleap-registry
   security:

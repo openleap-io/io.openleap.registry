@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-@Profile("default")
+@Profile("spring")
 @EnableConfigurationProperties({ClientRegistrationProperties.class})
 public class SpringAuthServerInstanceUnregistrationService implements InstanceUnregistrationService {
     Logger logger = LoggerFactory.getLogger(SpringAuthServerInstanceUnregistrationService.class);
