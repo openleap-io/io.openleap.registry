@@ -1,10 +1,10 @@
-FROM amazoncorretto:21-alpine as builder
+FROM amazoncorretto:25.0.1-alpine AS builder
 WORKDIR application
 ARG JAR_FILE=target/openleap-registry-exec.jar
 COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
-FROM amazoncorretto:21-alpine
+FROM amazoncorretto:25.0.1-alpine
 ARG JAVA_OPTS="-Xss512k"
 WORKDIR application
 COPY --from=builder application/application/ ./
